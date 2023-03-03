@@ -4,6 +4,8 @@ import Footer from "./components/Footer";
 import "./css/reset.css"
 import logo from "./assets/logo.png"
 import FlashCards from "./components/FlashCards";
+import DADOS from "./mock"
+
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
         <img src={logo} alt="logo"></img>
         <h1>ZapRecall</h1>
       </Titulo>
-      <FlashCards/>
+      <FlashCards dados={DADOS}/>
       <Footer/>
     </Container>
   );
@@ -24,19 +26,20 @@ export default App;
 const Container = styled.div`
   background: #FB6B6B;
   border: 1px solid #DBDBDB;
-  width: 375px;
-  height: 667px;
+  width: 100vw;
+  height: 100vw;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   
-
 `
 
 const Titulo = styled.div`
 display: flex;
 margin-top: 15px;
+
 
   h1{
     font-family: "Righteous";
@@ -48,12 +51,10 @@ margin-top: 15px;
     font-style: normal;
   }
   img{
-    margin-top: 15px;
+  
     margin-right: 10px;
     width: 52px;
     height: 60px;
   }
-
-
 
 `

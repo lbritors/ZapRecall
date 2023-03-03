@@ -1,39 +1,28 @@
 import styled from "styled-components";
+import FlashCard from "./FlashCard";
 
-export default function FlashCards() {
+export default function FlashCards({dados}) {
+    console.log(dados);
+    const {id, pergunta, respondida, resposta} = dados;
+    
     return(
         <Container>
-            <FlashCard>s</FlashCard>
+             {dados.map(d => <FlashCard id={d.id} key={d.id} pergunta={d.pergunta} respondida={d.respondida} resposta={d.resposta}/>)}
         </Container>
     );
 
 
 }
 
-function FlashCard() {
-    return(
-        <Carta>
-
-        </Carta>
-
-
-    );
-}
-
-const Carta = styled.div`
-    height: 65px;
-    width: 300px;
-    border-radius: 5px;
-    background-color: white;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-
-`
-
 const Container = styled.div`
-    width: fit-content;
-    height: 500px;
+    width: 330px;
+    height: 600px;
+    overflow-y: hidden;
+    
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    margin-top: 10px;
+    flex-direction: column;
 
 `
