@@ -1,13 +1,27 @@
+import { useState } from "react";
 import styled from "styled-components";
 import FlashCard from "./FlashCard";
 
+
+
+
 export default function FlashCards({dados}) {
-    console.log(dados);
+    const [renderiza, setRenderiza] = useState([])
+    const [virar, setVirar] = useState(false);
+    function virarCarta(item) {
+        
+        setRenderiza(dados[item]);
+        setVirar(true);
+        
+    }
+
+  
+
     const {id, pergunta, respondida, resposta} = dados;
     
     return(
         <Container>
-             {dados.map(d => <FlashCard id={d.id} key={d.id} pergunta={d.pergunta} respondida={d.respondida} resposta={d.resposta}/>)}
+             {dados.map(d => <FlashCard id={d.id} virar={virar} vsetVirar={setVirar} renderiza={renderiza} dados={dados} virarCarta={virarCarta} key={d.id} pergunta={d.pergunta} respondida={d.respondida} resposta={d.resposta}/>)}
         </Container>
     );
 
