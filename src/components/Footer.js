@@ -1,7 +1,11 @@
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 
 
 export default function Footer() {
+    const [contador, setContador] = useState(0);
+
+
     return (
         <>
             <Container>
