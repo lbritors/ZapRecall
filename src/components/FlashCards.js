@@ -13,7 +13,6 @@ export default function FlashCards({dados}) {
    
     
     const [virar, setVirar] = useState(false);
-    const [renderiza, setRenderiza] = useState([])
 
   
   
