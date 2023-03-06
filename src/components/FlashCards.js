@@ -5,23 +5,23 @@ import FlashCard from "./FlashCard";
 
 
 
-export default function FlashCards({dados}) {
-    const [renderiza, setRenderiza] = useState([])
-    const [virar, setVirar] = useState(false);
-    function virarCarta(item) {
-        
-        setRenderiza(dados[item]);
-        setVirar(true);
-        
-    }
 
-  
+export default function FlashCards({dados}) {
 
     const {id, pergunta, respondida, resposta} = dados;
+   
+   
+    
+    const [virar, setVirar] = useState(false);
+    const [renderiza, setRenderiza] = useState([])
+
+  
+  
+
     
     return(
         <Container>
-             {dados.map(d => <FlashCard id={d.id} virar={virar} vsetVirar={setVirar} renderiza={renderiza} dados={dados} virarCarta={virarCarta} key={d.id} pergunta={d.pergunta} respondida={d.respondida} resposta={d.resposta}/>)}
+             {dados.map(d => <FlashCard id={d.id}  virar={virar} vsetVirar={setVirar} dados={dados} key={d.id} pergunta={d.pergunta} respondida={d.respondida} resposta={d.resposta}/>)}
         </Container>
     );
 
@@ -40,3 +40,4 @@ const Container = styled.div`
     flex-direction: column;
 
 `
+

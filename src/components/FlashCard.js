@@ -1,30 +1,50 @@
 import styled from "styled-components";
 import setaPlay from "../assets/seta_play.png";
 import setaVirar from "../assets/seta_virar.png"
+import { useState } from "react";
 
 
 
 export default function FlashCard(props) {
-    const {id, dados, virarCarta, renderiza, setVirar, virar} =  props
-  
+    const {id, dados, setVirar, virar} =  props
+
+    const [dadoPergunta, setDadoPergunta] = useState("");
+    const [clicados, setClicados] = useState(false);
+    const [renderiza, setRenderiza] = useState([])
 
 
-    return(
-    <> 
-    {virar === true ? 
-        <ContainerPergunta>
-            <p>{renderiza.pergunta}</p>
-            <img src={setaVirar} alt="seta-virar" ></img>
-        </ContainerPergunta>
-        : <Carta>
+
+
+    function virarCarta(item) {
+        console.log(item);
+        setClicados(true);
+        setDadoPergunta(item);     
+     }
+ 
+    function mostrarResposta(item) {
+        console.log(item);
+
+
+    }
+   
+
+    return(clicados === false ?
+     
+        <Carta >
             <p>Pergunta {id+1}</p>
-            <img onClick={() => virarCarta(id)} src={setaPlay} alt="seta-play"></img>
-        </Carta>}
-        
-    </>
-    );
-};
+            <img  onClick={() => virarCarta(props.pergunta)} src={setaPlay} alt="seta-play"></img>
+        </Carta>
+    :
+        <ContainerPergunta>
+            <p>{dadoPergunta}</p>
+            <img onClick={() => mostrarResposta(props.resposta)} src={setaVirar} alt="seta-virar" ></img>
+        </ContainerPergunta>
 
+        ); 
+        
+
+    
+};
 
 
 
@@ -51,6 +71,7 @@ const Carta = styled.div`
     }
 `;
 
+
 const ContainerPergunta = styled.div`
     width: 299px;
     height: 131px;
@@ -60,7 +81,7 @@ const ContainerPergunta = styled.div`
     display: flex;
     justify-content: space-between;
     position: relative;
-    display: none;
+    
    
     p {
     font-family: 'Recursive';
@@ -79,4 +100,4 @@ const ContainerPergunta = styled.div`
         bottom: 6px;
         right: 8px;
     }
-`
+`;
