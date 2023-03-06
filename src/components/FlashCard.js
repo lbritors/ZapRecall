@@ -2,16 +2,23 @@ import styled from "styled-components";
 import setaPlay from "../assets/seta_play.png";
 import setaVirar from "../assets/seta_virar.png"
 import { useState } from "react";
+import iconeCerto from "../assets/icone_certo.png";
+import iconeQuase from "../assets/icone_quase.png";
+import iconeErro from "../assets/icone_erro.png";
+import { useEffect } from "react";
 
 
 
 export default function FlashCard(props) {
-    const {id, dados, setVirar, virar} =  props
 
+    const {id, dados, setVirar, virar} =  props    
     const [dadoPergunta, setDadoPergunta] = useState("");
     const [clicados, setClicados] = useState(false);
-    const [renderiza, setRenderiza] = useState([])
     const [viuResposta, setViuResposta] = useState(false);
+    const [color, setColor] = useState();
+    const [emoji, setEmoji] = useState();
+    const [respondida, setRespondida] = useState(false)
+    const [cartaFinal, setCartaFinal] = useState(false);
 
     function virarCarta(item) {
         console.log(item);
@@ -23,37 +30,102 @@ export default function FlashCard(props) {
     function mostrarResposta(item) {
         console.log(item);
         setViuResposta(true);
-        setRenderiza(<Resposta></Resposta>)        
-
-    }
-  
-    function Resposta(props) {
-      
     }
 
+   
+
+    function respondeu(e) {
+    
+    if(respondida === false) {
+        if(e === "Não lembrei") {
+            console.log("errrou")
+            setRespondida(true);
+            setClicados(false);
+            setCartaFinal(true);
+            setEmoji(iconeErro);
+            setColor("#FF3030");
+            
+            
+        } else if(e === "Quase não lembrei") {
+            console.log("quasseeee")
+            setRespondida(true);
+            setClicados(false);
+            setCartaFinal(true);
+            setEmoji(iconeQuase);
+            setColor("#FF3030");
+           
+            
+        }else if (e === "Zap!"){ 
+            console.log("aeee")
+            setRespondida(true);
+            setClicados(false);
+            setCartaFinal(true);
+            setEmoji(iconeCerto);
+            setColor("#FF3030");
+        }
+        
+        
+    }
+
+}
   
 
-    return(clicados === false ?
+    return((clicados === false) ?
      
-        <Carta >
-            <p>Pergunta {id+1}</p>
-            <img  onClick={() => virarCarta(props.pergunta)} src={setaPlay} alt="seta-play"></img>
-        </Carta>
-    : (viuResposta === true ?   <ContainerResposta>
+    <Carta id={id}>
+        <p>Pergunta {id+1}</p>
+        <img  onClick={() => virarCarta(props.pergunta)} src={setaPlay} alt="seta-play"></img>
+    </Carta>
+    : (viuResposta === false ?  
+    <ContainerPergunta dadoPergunta={dadoPergunta}>
+        <p>{dadoPergunta}</p>
+        <img onClick={() => mostrarResposta(props.resposta)} src={setaVirar} alt="seta-virar" ></img>
+    </ContainerPergunta>
+    : (respondida === true ? 
+    <CartaRespondida id={id}>
+        <p>Pergunta {id+1}</p>
+        <img  onClick={() => virarCarta(props.pergunta)} src={emoji} alt="seta-play"></img>
+    </CartaRespondida> :
+     <ContainerResposta color={color} cartaFinal={cartaFinal}>
         <p>{props.resposta}</p>
         <div>
-           <button><p>Não lembrei</p></button>
-           <button><p>Quase não lembrei</p></button>
-          <button><p>Zap!</p></button>
-       </div>
-    </ContainerResposta> :   <ContainerPergunta>
-            <p>{dadoPergunta}</p>
-            <img onClick={() => mostrarResposta(props.resposta)} src={setaVirar} alt="seta-virar" ></img>
-        </ContainerPergunta>)
+            <button  onClick={(event) => respondeu(event.target.innerText)}><p>Não lembrei</p></button>
+            <button color={"#FF3030"} onClick={(event)  => respondeu(event.target.innerText)}><p>Quase não lembrei</p></button>
+        <button color={"#FF3030"}onClick={(event) => respondeu(event.target.innerText)}><p>Zap!</p></button>
+        </div>
+    </ContainerResposta>)  )
+    
 
-        ); 
+    ); 
         
 };
+
+
+const CartaRespondida = styled.div `
+    height: 65px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    p {
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        color: ${(props) => props.cartaFinal==="true"? props.color : "black"};
+        text-decoration: ${(props) => props.cartafinal ? "line-through" : "none"};
+
+    }
+    img {
+        width: 23px;
+        height: 23px;
+
+    }
+`;
 
 
 
@@ -72,7 +144,9 @@ const Carta = styled.div`
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: black;
+        color: ${(props) => props.cartaFinal==="true"? props.color : "black"};
+        text-decoration: ${(props) => props.cartafinal ? "line-through" : "none"};
+
     }
     img {
         width: 20px;
@@ -90,7 +164,6 @@ const ContainerPergunta = styled.div`
     display: flex;
     justify-content: space-between;
     position: relative;
-    display: ${(props) => props.viuResposta ? "none" : "initial"}
    
     p {
     font-family: 'Recursive';

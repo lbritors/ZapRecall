@@ -8,6 +8,7 @@ import DADOS from "./mock"
 
 
 function App() {
+
   return (
     <Container>
       <Titulo>
@@ -15,7 +16,7 @@ function App() {
         <h1>ZapRecall</h1>
       </Titulo>
       <FlashCards dados={DADOS}/>
-      <Footer/>
+      <Footer />
     </Container>
   );
 }
