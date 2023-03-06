@@ -7,7 +7,7 @@ export default function Respondida(props) {
 
     return(
     <CartaRespondida id={id}>
-        <p>Pergunta {id+1}</p>
+        <p data-test="flashcard-text">Pergunta {id+1}</p>
         <img  src={emoji} alt="seta-play"></img>
     </CartaRespondida> 
     );

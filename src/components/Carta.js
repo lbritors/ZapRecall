@@ -5,9 +5,9 @@ import setaPlay from "../assets/seta_play.png";
 export default function Card(props) {
     const {id, dados, virarCarta} = props;
     return (
-    <Carta id={id}>
-        <p>Pergunta {id+1}</p>
-        <img  onClick={() => virarCarta(dados[id].pergunta)} src={setaPlay} alt="seta-play"></img>
+    <Carta data-test="flashcard" id={id}>
+        <p data-test="flashcard-text">Pergunta {id+1}</p>
+        <img  data-test="play-btn" onClick={() => virarCarta(dados[id].pergunta)} src={setaPlay} alt="seta-play"></img>
     </Carta>
 
 );

@@ -8,8 +8,8 @@ export default function Pergunta(props) {
 
     return (
     <ContainerPergunta dadoPergunta={dadoPergunta}>
-        <p>{dadoPergunta}</p>
-        <img onClick={() => mostrarTexto(dados[id])} src={setaVirar} alt="seta-virar" ></img>
+        <p data-test="flashcard-text">{dadoPergunta}</p>
+        <img data-test="turn-btn" onClick={() => mostrarTexto(dados[id])} src={setaVirar} alt="seta-virar" ></img>
     </ContainerPergunta>
     )
 }

@@ -5,11 +5,11 @@ const {respondeu, color, cartaFinal, dados, id} = props;
 
     return (
         <ContainerResposta color={color} cartaFinal={cartaFinal}>
-            <p>{dados[id].resposta}</p>
+            <p data-test="flashcard-text">{dados[id].resposta}</p>
             <div>
-                <button  color="#FF3030" onClick={() => respondeu("wrong")}><p>Não lembrei</p></button>
-                <button color="#FF922E" onClick={()  => respondeu("almost")}><p>Quase não lembrei</p></button>
-                <button  color="#2FBE34" onClick={() => respondeu("correct")}><p>Zap!</p></button>
+                <button  data-test="no-btn" color="#FF3030" onClick={() => respondeu("wrong")}><p>Não lembrei</p></button>
+                <button color="#FF922E" data-test="partil-btn" onClick={()  => respondeu("almost")}><p>Quase não lembrei</p></button>
+                <button  color="#2FBE34"data-test="zap-btn" onClick={() => respondeu("correct")}><p>Zap!</p></button>
             </div>
         </ContainerResposta>
 
