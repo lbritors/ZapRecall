@@ -13,7 +13,7 @@ import iconeErro from "../assets/icone_erro.png";
 
 export default function FlashCard(props) {
 
-    const {id, dados, setVirar, virar} =  props    
+    const {id, dados, setVirar, virar, contador, setContador} =  props    
     const [dadoPergunta, setDadoPergunta] = useState("");
     const [clicados, setClicados] = useState(false);
     const [viuResposta, setViuResposta] = useState(false);
@@ -21,6 +21,7 @@ export default function FlashCard(props) {
     const [emoji, setEmoji] = useState();
     const [respondida, setRespondida] = useState(false)
     const [cartaFinal, setCartaFinal] = useState(false);
+
 
     function virarCarta(item) {
         console.log(item);
@@ -43,10 +44,14 @@ export default function FlashCard(props) {
             setRespondida(true);
             setClicados(false);
             setCartaFinal(true);
-            setEmoji(iconeErro);
-            setColor("#FF3030");
-            const erro = "#FF3030";
-            setColor(erro);
+            const icone = iconeErro
+            setEmoji(icone);
+
+            const cor = "#FF3030";
+            setColor(cor);
+            
+            const novaResposta = contador +1;
+            setContador(novaResposta);
             
             
         } else if(e === "almost") {
@@ -54,10 +59,19 @@ export default function FlashCard(props) {
             setRespondida(true);
             setClicados(false);
             setCartaFinal(true);
-            setEmoji(iconeQuase);
-            setColor("#FF922E");
+
+            const icone = iconeQuase
+            setEmoji(icone);
+
+            const cor = "#FF922E";
+            setColor(cor);
+          
+         
             const erro = "#FF922E";
             setColor(erro);
+
+            const novaResposta = contador +1;
+            setContador(novaResposta);
            
             
         }else if (e === "correct"){ 
@@ -65,10 +79,18 @@ export default function FlashCard(props) {
             setRespondida(true);
             setClicados(false);
             setCartaFinal(true);
+
+            const icone = iconeCerto
+            setEmoji(icone);
+
+            const cor = "#2FBE34";
+            setColor(cor);
+
             setEmoji(iconeCerto);
             setColor("#2FBE34");
-            const erro = "#2FBE34";
-            setColor(erro);
+            
+            const novaResposta = contador +1;
+            setContador(novaResposta);
         }
         
         

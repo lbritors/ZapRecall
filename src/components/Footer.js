@@ -1,15 +1,15 @@
 import { useCallback, useState } from "react";
 import styled from "styled-components";
+import DADOS from "../mock"
 
 
-export default function Footer() {
-    const [contador, setContador] = useState(0);
-
-
+export default function Footer(props) {
+ const {contador} = props;
+console.log(DADOS.length);
     return (
         <>
             <Container>
-                <h2>0/4 CONCLUÍDOS</h2>
+                <h2>{contador}/{DADOS.length} CONCLUÍDOS</h2>
             </Container>
         </>
 

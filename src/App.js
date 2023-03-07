@@ -5,9 +5,11 @@ import "./css/reset.css"
 import logo from "./assets/logo.png"
 import FlashCards from "./components/FlashCards";
 import DADOS from "./mock"
+import { useState } from "react";
 
 
 function App() {
+  const [contador, setContador] = useState(0);
 
   return (
     <Container>
@@ -15,8 +17,8 @@ function App() {
         <img src={logo} alt="logo"></img>
         <h1>ZapRecall</h1>
       </Titulo>
-      <FlashCards dados={DADOS}/>
-      <Footer />
+      <FlashCards dados={DADOS} contador={contador} setContador={setContador}/>
+      <Footer contador={contador} setContador={setContador}/>
     </Container>
   );
 }

@@ -6,10 +6,9 @@ import FlashCard from "./FlashCard";
 
 
 
-export default function FlashCards({dados}) {
+export default function FlashCards({dados, contador, setContador}) {
 
-    const {id, pergunta, respondida, resposta} = dados;
-   
+    
    
     
     const [virar, setVirar] = useState(false);
@@ -20,7 +19,7 @@ export default function FlashCards({dados}) {
     
     return(
         <Container>
-             {dados.map(d => <FlashCard id={d.id}  virar={virar} vsetVirar={setVirar} dados={dados} key={d.id} pergunta={d.pergunta} respondida={d.respondida} resposta={d.resposta}/>)}
+             {dados.map(d => <FlashCard id={d.id}  contador={contador} setContador={setContador} contavirar={virar} vsetVirar={setVirar} dados={dados} key={d.id} pergunta={d.pergunta} respondida={d.respondida} resposta={d.resposta}/>)}
         </Container>
     );
 
