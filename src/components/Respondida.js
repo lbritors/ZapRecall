@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 
 export default function Respondida(props) {
-    const {id, dados, virarCarta, emoji, setEmoji} = props;
+    const {id, emoji, certo, erro, quase, color} = props;
 
     return(
-    <CartaRespondida id={id}>
+    <CartaRespondida emoji={emoji} color={color} certo={certo} quase={quase} erro={erro} d={id}>
         <p data-test="flashcard-text">Pergunta {id+1}</p>
-        <img  src={emoji} alt="seta-play"></img>
+        <img  src={emoji} alt="icone"></img>
     </CartaRespondida> 
     );
 
@@ -32,7 +32,7 @@ const CartaRespondida = styled.div `
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: ${(props) => props.color && true} ;
+        color: ${({emoji, certo, erro, quase, color}) =>  emoji===erro? color : emoji ===quase ? color: emoji === certo ? color : "black"} ;
         text-decoration: line-through;
     }
     img {

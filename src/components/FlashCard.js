@@ -29,8 +29,7 @@ export default function FlashCard(props) {
      }
     
  
-    function mostrarTexto(item) {
-        console.log(item);
+    function mostrarTexto() {
         setViuResposta(true);
     }
 
@@ -84,16 +83,11 @@ export default function FlashCard(props) {
     : (viuResposta === false ?  
     <Pergunta dadoPergunta={dadoPergunta} dados={dados} mostrarTexto={mostrarTexto}></Pergunta>
     : (respondida === true ? 
-     <Respondida id={id} dados={dados} emoji={emoji} setEmoji={setEmoji} virarCarta={virarCarta}></Respondida>   
-    // <CartaRespondida id={id}>
-    //     <p>Pergunta {id+1}</p>
-    //     <img  onClick={() => virarCarta(props.pergunta)} src={emoji} alt="seta-play"></img>
-    // </CartaRespondida> 
-    
+     <Respondida id={id} dados={dados} emoji={emoji} color={color} setEmoji={setEmoji} certo={iconeCerto} quase={iconeQuase} erro={iconeErro} virarCarta={virarCarta}></Respondida>   
+   
     :
 
      <Resposta dados={dados} id={id} respondeu={respondeu}></Resposta>)  )
-    
 
     ); 
         
